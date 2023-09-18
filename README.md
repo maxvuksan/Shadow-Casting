@@ -1,5 +1,5 @@
 # Shadow Casting
 
-Casting shadows from point lights
+Casting shadows from point lights!
 
-### Setup
+Execute `make run` to run the program.
