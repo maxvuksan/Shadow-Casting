@@ -1,10 +1,7 @@
-run: compile link execute
+run: compile execute
 
 compile:
-	g++ -Isrc/include -c main.cpp
-
-link:
-	g++ main.o -o main -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system
+	g++ -o main.exe -Isrc/include main.cpp Code/*.cpp -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 execute:
 	./main.exe
