@@ -6,7 +6,9 @@ class Rectangle{
         Rectangle(sf::Vector2f position, sf::Vector2f dimensions, int rotation=0);
         Rectangle(int x, int y, int width, int height, int rotation=0);
 
-        void Draw(sf::RenderWindow& window);
+        void DrawShape(sf::RenderTexture& texture);
+        void DrawShapeCutout(sf::RenderTexture& texture);
+        void DrawShadow(sf::RenderTexture& texture, sf::RenderWindow& window);
 
     private:
         void Init();

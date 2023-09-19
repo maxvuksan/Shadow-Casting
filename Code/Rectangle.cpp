@@ -13,7 +13,7 @@ void Rectangle::Init(){
     shape.setPosition(position);
     shape.setRotation(rotation);
     shape.setOrigin(dimensions.x / 2.0f, dimensions.y / 2.0f);
-    shape.setFillColor(sf::Color(40,30,46));
+    shape.setFillColor(sf::Color(31, 19, 28));
 
     shadow_shape.setPrimitiveType(sf::TriangleStrip);
     
@@ -61,10 +61,12 @@ void Rectangle::CalculateShadowShape(sf::RenderWindow& window){
 
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
 
+    sf::Color shadow_colour = sf::Color::Black;
+
     for(int i = 0; i < 4; i++){
 
         sf::Vector2f point = corners[i].position;
-        shadow_shape.append(sf::Vertex(point, sf::Color(30,20,36)));
+        shadow_shape.append(sf::Vertex(point, shadow_colour));
 
         // from light source to corner
         float angle = atan2(mouse_pos.y - point.y, mouse_pos.x - point.x);
@@ -72,28 +74,24 @@ void Rectangle::CalculateShadowShape(sf::RenderWindow& window){
         sf::Vector2f point_extension = point;
         point_extension.x -= cos(angle) * shadow_extension_distance;
         point_extension.y -= sin(angle) * shadow_extension_distance;
-        shadow_shape.append(sf::Vertex(point_extension, sf::Color(30,20,36)));
-    }    
-    for(int i = 3; i >= 0; i--){
-
-        sf::Vector2f point = corners[i].position;
-        shadow_shape.append(sf::Vertex(point, sf::Color(30,20,36)));
-
-        // from light source to corner
-        float angle = atan2(mouse_pos.y - point.y, mouse_pos.x - point.x);
-        
-        sf::Vector2f point_extension = point;
-        point_extension.x -= cos(angle) * shadow_extension_distance;
-        point_extension.y -= sin(angle) * shadow_extension_distance;
-        shadow_shape.append(sf::Vertex(point_extension, sf::Color(30,20,36)));
-    }    
+        shadow_shape.append(sf::Vertex(point_extension, shadow_colour));
+    }       
 }
 
-void Rectangle::Draw(sf::RenderWindow& window){
+void Rectangle::DrawShape(sf::RenderTexture& texture){
+    texture.draw(shape);
+}
 
+void Rectangle::DrawShapeCutout(sf::RenderTexture& texture){
+    sf::Color previous_colour = shape.getFillColor();
+    shape.setFillColor(sf::Color::White);
+    
+    texture.draw(shape);
+
+    shape.setFillColor(previous_colour);
+}
+
+void Rectangle::DrawShadow(sf::RenderTexture& texture, sf::RenderWindow& window){
     CalculateShadowShape(window);
-
-
-    window.draw(shadow_shape);
-    window.draw(shape);
+    texture.draw(shadow_shape);
 }

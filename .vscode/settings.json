@@ -5,6 +5,7 @@
         "cmath": "cpp",
         "string": "cpp",
         "deque": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iterator": "cpp"
     }
 }

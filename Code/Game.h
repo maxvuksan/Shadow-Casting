@@ -13,6 +13,9 @@ class Game{
         int window_width;
         int window_height;
 
+        std::string shader_contents;
+        sf::Shader light_shader;
+
         std::vector<Rectangle> rectangles;
 
         void Start();
