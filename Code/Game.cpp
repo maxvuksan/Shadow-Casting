@@ -33,6 +33,7 @@ void Game::Start(){
     rectangles.emplace_back(140,130,40,120,45);
     rectangles.emplace_back(300,450,150,200, -30);
     rectangles.emplace_back(400,160,45,55, 10);
+    window.setMouseCursorVisible(false);
 }
 
 
