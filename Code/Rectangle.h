@@ -10,11 +10,22 @@ class Rectangle{
 
     private:
         void Init();
+        void CalculateCorners();    
+        void CalculateShadowShape(sf::RenderWindow& window);
+
+        // converts degrees to radians
+        float Radians(float degrees);    
 
         sf::Vector2f position;
         sf::Vector2f dimensions;
         int rotation;
-    
+
+
+        sf::VertexArray corners;    
+        sf::VertexArray shadow_shape;
+
+        static float shadow_extension_distance;
+
         sf::RectangleShape shape;
 
 };
