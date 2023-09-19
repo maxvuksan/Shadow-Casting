@@ -1,5 +1,9 @@
 # Shadow Casting
 
-Casting shadows from point lights!
+Exploring lighting illusions.
+Written in C++ with the [SFML](https://www.sfml-dev.org/) graphics library.
 
-Execute `make run` to run the program.
+![Demo](/Demo.gif?raw=true)
+
+call `make run` to compile and run.
+
